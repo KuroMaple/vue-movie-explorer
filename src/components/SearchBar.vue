@@ -43,9 +43,18 @@ export default {
     onSearch() {
       if (!this.$refs.form.validate()) return;
       console.log("Searching for:", this.searchQuery);
-      this.searchQuery = ""; // Clear the search input after submission
-      this.valid = false; // Reset the form validation state
-      this.$refs.form.resetValidation();
+      this.$store
+        .dispatch("addMovie", this.searchQuery)
+        .then((response) => {
+          console.log("Search results:", response);
+          this.searchQuery = ""; // Clear the search input after submission
+          this.valid = false; // Reset the form validation state
+          this.$refs.form.resetValidation();
+        })
+        .catch((error) => {
+          console.error("Search error:", error);
+          this.$refs.form.resetValidation(); // Reset validation on error
+        });
     },
     onClear() {
       this.searchQuery = ""; // Clear the search input
