@@ -1,10 +1,17 @@
 <template>
-  <v-container class="home" fluid>
-    <v-row justify="center" align="center" style="height: 850px">
+  <v-container
+    fluid
+    class="home fill-height d-flex align-center justify-center"
+    style="min-height: 90vh"
+  >
+    <v-row justify="center" align="center" class="fill-height">
       <v-col cols="12" md="8" class="text-center" style="height: 100%">
         <v-card elevation="1" class="pa-4" style="height: 100%">
-          <v-card-text> Search for your favorite movies below! </v-card-text>
-          <search-bar />
+          <v-card-text>
+            <h2>Search for your favorite movies below!</h2>
+          </v-card-text>
+
+          <search-bar class="mb-4" />
           <movie-grid />
         </v-card>
       </v-col>
@@ -15,6 +22,7 @@
 <script>
 import SearchBar from "@/components/SearchBar.vue";
 import MovieGrid from "@/components/MovieGrid.vue";
+
 export default {
   name: "HomeView",
   components: {
@@ -23,8 +31,5 @@ export default {
   },
 };
 </script>
-<style scoped>
-.home {
-  min-height: 90vh;
-}
-</style>
+
+<style scoped></style>

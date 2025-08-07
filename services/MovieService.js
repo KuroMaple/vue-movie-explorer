@@ -2,7 +2,6 @@ import axios from "axios";
 
 const API_URL = "http://www.omdbapi.com/";
 const API_KEY = process.env.VUE_APP_OMDB_API_KEY;
-console.log("API Key:", API_KEY); // Debugging line to check if the API key is loaded correctly
 const apiClient = axios.create({
   baseURL: API_URL,
   params: {

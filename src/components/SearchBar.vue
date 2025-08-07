@@ -39,27 +39,25 @@ export default {
     };
   },
   methods: {
-    // You can add methods here to handle search functionality
     onSearch() {
       if (!this.$refs.form.validate()) return;
       console.log("Searching for:", this.searchQuery);
       this.$store
         .dispatch("addMovie", this.searchQuery)
-        .then((response) => {
-          console.log("Search results:", response);
-          this.searchQuery = ""; // Clear the search input after submission
-          this.valid = false; // Reset the form validation state
+        .then(() => {
+          this.searchQuery = "";
+          this.valid = false;
           this.$refs.form.resetValidation();
         })
         .catch((error) => {
           console.error("Search error:", error);
-          this.$refs.form.resetValidation(); // Reset validation on error
+          this.$refs.form.resetValidation();
         });
     },
     onClear() {
-      this.searchQuery = ""; // Clear the search input
-      this.$refs.form.resetValidation(); // Reset validation state
-      this.valid = false; // Reset the form validation state
+      this.searchQuery = "";
+      this.$refs.form.resetValidation();
+      this.valid = false;
     },
   },
 };

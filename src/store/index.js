@@ -23,9 +23,12 @@ export default new Vuex.Store({
   actions: {
     addMovie: async ({ commit }, searchTerm) => {
       try {
-        const response = await MovieService.getMoviesByTitle(searchTerm);
-        console.log("Movies fetched:", response);
-        commit("PUSH_MOVIE", response);
+        const movie = await MovieService.getMoviesByTitle(searchTerm);
+        if (movie && movie.Response !== "False") {
+          commit("PUSH_MOVIE", movie);
+        } else {
+          console.warn(`No movie found for "${searchTerm}"`);
+        }
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
